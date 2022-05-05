@@ -11,3 +11,5 @@ app.listen(process.env.PORT)
 app.get('*',(req,res)=>{
     res.status(404).send("<h1>404 not found</h1>")
 })
+
+app.use('/places',require('./controllers/places'))
