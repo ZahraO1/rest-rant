@@ -1,6 +1,9 @@
 const router = require('express').Router()
-module.exports=router
 
+//displays the /places page
 router.get('/',(req,res)=>{
-    res.send('GET /places')
+    res.send('<h1>GET /places</h1>')
 })
+
+//exporting an express.Router()
+module.exports=router
