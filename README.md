@@ -12,3 +12,10 @@
 |POST|/places/:id/rant|Create a rant(comment) about a particular place
 |DELETE|/places/:id/rant/:rantId|Delete a rant (comment) about a particular place
 |GET|*|404 page (matches any route not defined above)|
+
+`places`
+- `name` - String
+- `city` - String
+- `state` - String
+- `cuisines` - String
+- `pic` - String
