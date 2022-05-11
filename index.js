@@ -18,7 +18,7 @@ app.use('/places',require('./controllers/places'))
 
 //page displayes a 404 not found error if client types in wrong address
 app.get('*',(req,res)=>{
-    res.status(404).send("<h1>404 not found</h1>")
+    res.status(404).render("error404")
 })
 
 //starts a server and listens to port number in .env
