@@ -3,9 +3,14 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
-//homepage displays a message of Hello World
+//Defning the view engine (JSX in this case) that we will be using
+app.set('view engine','jsx')
+app.engine('jsx', require('express-react-views').createEngine())
+
+
+//renders home page from home.jsx in views folder
 app.get('/',(req,res)=>{
-    res.send('Hello World')
+    res.render('home')
 })
 
 //importing places router from controllers folder
