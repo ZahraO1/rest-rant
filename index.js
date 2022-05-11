@@ -4,10 +4,12 @@ const express = require('express')
 const app = express()
 
 //Defning the view engine (JSX in this case) that we will be using
+app.set('views',__dirname + '/views')
 app.set('view engine','jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+app.use(express.static('public'))   //let Express know what you're going to call your static folder
 
-
+//Controllers and Routes
 //renders home page from home.jsx in views folder
 app.get('/',(req,res)=>{
     res.render('home')
