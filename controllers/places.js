@@ -20,8 +20,16 @@ router.get('/',(req,res)=>{
      res.render('places/index',{places})
 })
 
+//New
 router.get('/new',(req,res)=>{
   res.render('places/new')
 })
+
+//Create
+router.post('/', (req, res) => {
+  console.log(req.body)
+  res.send('POST /places')
+})
+
 //exporting an express.Router()
 module.exports=router
