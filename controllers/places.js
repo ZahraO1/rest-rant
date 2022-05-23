@@ -1,21 +1,8 @@
 const router = require('express').Router()
+const places = require('..models/places.js')
 
 //displays the /places page
 router.get('/',(req,res)=>{
-    let places = [{
-        name: 'H-Thai-ML',
-        city: 'Seattle',
-        state: 'WA',
-        cuisines: 'Thai, Pan-Asian',
-        pic: 'http://placekitten.com/250/250'
-      }, {
-        name: 'Coding Cat Cafe',
-        city: 'Phoenix',
-        state: 'AZ',
-        cuisines: 'Coffee, Bakery',
-        pic: 'http://placekitten.com/250/250'
-      }]
-      
     //puttin {places} inside
      res.render('places/index',{places})
 })
@@ -28,7 +15,19 @@ router.get('/new',(req,res)=>{
 //Create
 router.post('/', (req, res) => {
   console.log(req.body)
-  res.send('POST /places')
+  if (!req.body.pic){
+    //if image is not presented, a default image will be shown
+    req.body.pic = 'http://placekitten.com/400/400'
+  }
+  if(!req.body.city){
+    req.body.city = 'Anytown'
+  }
+  if(!req.body.state){
+    req.body.state='USA'
+  }
+  //pushes the body information to an array in located in /models/places.js
+  places.push(req.body)
+  res.redirect('/places')
 })
 
 //exporting an express.Router()
