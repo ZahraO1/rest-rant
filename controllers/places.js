@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const places = require('..models/places.js')
+const places = require('../models/places')
 
 //displays the /places page
 router.get('/',(req,res)=>{
