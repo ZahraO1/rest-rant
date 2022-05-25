@@ -30,5 +30,22 @@ router.post('/', (req, res) => {
   res.redirect('/places')
 })
 
+//Show
+router.get('/:id',(req,res)=>{
+  let id = Number(req.params.id)
+  //if id is not a number, a 404 page will render
+  if(isNaN(id)){
+    res.render('error404')
+  }
+  //if the id number is not within places array --> renders 404 error page
+  else if(!places[id]){
+    res.render('error404')
+  }
+  else{
+    //places is from ./models/places.js
+    res.render('places/show',{place:places[id]})
+  }
+})
+
 //exporting an express.Router()
 module.exports=router
