@@ -43,9 +43,22 @@ router.get('/:id',(req,res)=>{
   }
   else{
     //places is from ./models/places.js
-    res.render('places/show',{place:places[id]})
+    res.render('places/show',{place:places[id],id})
   }
 })
 
+//Delete
+router.delete('places/:id', (req,res)=>{
+  let id = Number(req.params.id)
+  if(isNaN(id)){
+    res.render('error404')
+  }else if(!places[id]){
+    res.render('error404')
+  }else{
+    //removes the item from the array
+    places.splice(id,1)
+    res.redirect('/places')
+  }
+})
 //exporting an express.Router()
 module.exports=router

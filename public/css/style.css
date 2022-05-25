@@ -37,3 +37,7 @@ main{
     margin-left: 20px;
     background-color: white;;
 }
+
+div h2{
+    color: lightblue;
+}
