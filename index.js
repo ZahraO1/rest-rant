@@ -11,6 +11,7 @@ app.set('view engine','jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.static('public'))   //let Express know what you're going to call your static folder
 app.use(methodOverride('_method'))
+app.use(express.urlencoded())
 
 //Controllers and Routes
 //renders home page from home.jsx in views folder

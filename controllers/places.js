@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const res = require('express/lib/response')
 const places = require('../models/places')
 
 //displays the /places page
@@ -70,7 +71,35 @@ router.get('/:id/edit',(req,res)=>{
   }else if(!places[id]){
     res.render('error404')
   }else{
-    res.render('places/edit',{places:places[id],id})
+    res.render('places/edit',{place:places[id],id})
+  }
+})
+
+//Put route
+router.put('/:id',(req,res)=>{
+  let id = Number(req.params.id)
+  if(isNaN(id)){
+    res.render('error404')
+  }else if(!places[id]){
+    res.render('error404')
+  }
+  else{
+    //dig into req.body and make sure data is valid
+    if(!req.body.pic){
+      //Default image if one is not provided
+      req.body.pic='http://placekitten.com/400/400'
+    }
+    if(!req.body.city){
+      //if a city is not provided, replaced with default value
+      req.body.city = "Anytown"
+    }
+    if(!req.body.state){
+      //if state isn't provided, this value is replaced with a default value
+      req.body.state='USA'
+    }
+    //Save the new data into places[id] (updating it)
+    places[id] = req.body
+    res.redirect(`/places/${id}`)
   }
 })
 //exporting an express.Router()
