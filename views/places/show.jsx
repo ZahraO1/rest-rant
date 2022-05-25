@@ -28,10 +28,12 @@ function show(data){
                 
                 {/*delete button*/}
                 {/*_method comes from methodOverride from the npm method-override*/}
-                <form method='POST' action={`/places/${data.id}?_method=DELETE`}>
+                <form method="POST" action={`/places/${data.id}?_method=DELETE`}>
+                    {/* <input type="hidden" name="_method" value="DELETE"/> */}
                     <button type='submit' className='btn btn-danger'>
                         Delete
                     </button>
+                    {/* <input type="submit" value="DELETE" /> */}
                 </form>
             </main>
         </Def>

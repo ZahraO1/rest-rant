@@ -48,6 +48,7 @@ router.get('/:id',(req,res)=>{
 })
 
 //Delete
+//-->error: cannot delete /places/1 
 router.delete('places/:id', (req,res)=>{
   let id = Number(req.params.id)
   if(isNaN(id)){
@@ -58,6 +59,18 @@ router.delete('places/:id', (req,res)=>{
     //removes the item from the array
     places.splice(id,1)
     res.redirect('/places')
+  }
+})
+
+//Edit route
+router.get('/:id/edit',(req,res)=>{
+  let id = Number(req.params.id)
+  if(isNaN(id)){
+    res.render('error404')
+  }else if(!places[id]){
+    res.render('error404')
+  }else{
+    res.render('places/edit',{places:places[id],id})
   }
 })
 //exporting an express.Router()
